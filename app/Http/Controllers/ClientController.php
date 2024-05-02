@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client; // Add this line to import the Client model
+use App\Models\Property; // Add this line to import the Property model
+use App\Models\Room; // Add this line to import the Rooms model
+
 
 class ClientController extends Controller
 {
@@ -16,29 +19,38 @@ class ClientController extends Controller
         $clients = Client::all(); // Fetch all clients from the database
         return view('clients.index', ['clients' => $clients]);
     }
-    /**
-     * Display the specified resource.
-     */
+
+
+    public function properties($clientId)
+    {
+        $client = Client::find($clientId);
+        $properties = $client->properties; // Assuming properties is the relationship method in your Client model
+        return view('clients.properties', compact('client', 'properties'));
+    }
+
+
     public function show(string $id)
     {
-        $client = Client::find($id); // Fetch the client with the given id
-        return view('clients.single', ['client' => $client]);
+        $client = Client::findOrFail($id);
+        return view('clients.single', compact('client'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients,email',
+            'phone' => 'required|string|max:20',
+        ]);
+
+        Client::create($validatedData);
+
+        return redirect()->route('clients.index');
     }
 
 

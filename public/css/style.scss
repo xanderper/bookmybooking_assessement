@@ -9,7 +9,7 @@ body {
 }
 
 
-.client_container {
+.custom_container {
     padding: 1.5rem;
 
     .h2 {
@@ -53,7 +53,12 @@ body {
 
 
 }
+
 .custom__secondary {
     color: #858c97;
 }
 
+.custom_property_card {
+    border: 1px solid black;
+    border-radius: 15px;
+}

@@ -17,4 +17,13 @@ class Client extends Model
     protected $fillable = [
         'name','email','phone'
     ];
+
+
+    /**
+     * Get the properties associated with the client.
+     */
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
 }

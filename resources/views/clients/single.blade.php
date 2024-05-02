@@ -1,7 +1,7 @@
 @extends('layouts.layouts')
 
 @section('content')
-    <div class="container client_container">
+    <div class="container custom_container client_container">
 
         <h1 class="h2 mb-4">Overview</h1>
 
@@ -15,7 +15,6 @@
                 </a>
 
             </div>
-
             <div class="sm:flex items-center">
                 <div class="pt-3 sm:pt-0">
                     <h3 class="h5 mb-2">{{ $client->name }}
@@ -28,7 +27,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row py-4 mb-2 sm:mb-3">
                 <div class="grid md:grid-cols-3 mb-4 md:mb-0">
                     <table class="table mb-0">
@@ -51,69 +49,58 @@
             </div>
         </div>
 
+
+
+
         <div class="custom_box properties-container">
             <div class="flex items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3">
-                <i class="fa-solid fa-cart-shopping pe-1 me-2"></i>
+                <i class="fa-solid fa-location-dot pe-1 me-2"></i>
                 <h2 class="h4 mb-0">Properties</h2>
-                <a class=" custom__btn ms-auto" href="#">View all</a>
+                <a class=" custom__btn ms-auto" href="{{ route('clients.properties', $client->id) }}">View all</a>
+
             </div>
 
 
-            <div class="mx-auto mt-8 grid divide-y divide-neutral-200">
-                <div class="py-5">
-                    <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                            <span> How does the billing work?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                     stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </span>
-                        </summary>
-                        <p class="group-open:animate-fadeIn mt-3 text-neutral-600">Springerdata offers a variety of
-                            billing options, including monthly and annual subscription plans, as well as pay-as-you-go
-                            pricing for certain services. Payment is typically made through a credit card or other
-                            secure online payment method.
-                        </p>
-                    </details>
+            {{-- Properties --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach($client->properties as $property)
+
+                    <a href="{{ route('properties.show', $property->id) }}">
+                    <div class="col">
+                        <div class="custom_property_card h-full p-3 sm:p-4">
+                            <div class="flex align-center pb-2 mb-1">
+                                <h3 class="h6 text-nowrap text-truncate mb-0">Property #{{ $property->id }}</h3>
+                                <div class="d-flex ms-auto">
+                                    <button class="nav-link fs-xl fw-normal py-1 pe-0 ps-1 ms-2" type="button"
+                                            data-bs-toggle="tooltip" aria-label="Edit" data-bs-original-title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="nav-link text-danger fs-xl fw-normal py-1 pe-0 ps-1 ms-2"
+                                            type="button" data-bs-toggle="tooltip" aria-label="Trash"
+                                            data-bs-original-title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="mb-0">{{ $property->street }}, {{ $property->postcode  }},<br>{{ $property->country }}, {{ $property->city  }},</p>
+                        </div>
+                    </div>
+                    </a>
+                @endforeach
+
+
+                <div class="col">
+                    <div class="flex custom_property_card h-full align-center py-5 px-3 sm:px-4 ">
+                        <a class="stretched-link flex align-center fw-semibold text-decoration-none m-auto"
+{{--                           href="{{ route('properties.create', ['clientId' => [$property->id ]) }}" data-bs-toggle="modal">--}}
+                            href="{{ route('properties.create', ['clientId' => $client->id]) }}" data-bs-toggle="modal">
+{{--                            {{ route('properties.create', [$property->id ]) }}--}}
+                            <i class="bi bi-plus fs-xl me-2"></i>
+                            Add new address
+                        </a>
+
+                    </div>
                 </div>
             </div>
-
         </div>
-
-
-        <div class="custom_box rooms-container">
-            <div class="flex items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3">
-                <i class="fa-solid fa-cart-shopping pe-1 me-2"></i>
-                <h2 class="h4 mb-0">Rooms</h2>
-                <a class=" custom__btn ms-auto" href="#">View all</a>
-            </div>
-
-
-            <div class="mx-auto mt-8 grid divide-y divide-neutral-200">
-                <div class="py-5">
-                    <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                            <span> How does the billing work?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                     stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </span>
-                        </summary>
-                        <p class="group-open:animate-fadeIn mt-3 text-neutral-600">Springerdata offers a variety of
-                            billing options, including monthly and annual subscription plans, as well as pay-as-you-go
-                            pricing for certain services. Payment is typically made through a credit card or other
-                            secure online payment method.
-                        </p>
-                    </details>
-                </div>
-            </div>
-
-        </div>
-    </div>
 @endsection
