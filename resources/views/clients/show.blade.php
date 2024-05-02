@@ -3,8 +3,6 @@
 @section('content')
     <div class="container custom_container client_container">
 
-        <h1 class="h2 mb-4">Overview</h1>
-
         <div class="custom_box card-client-details">
             <div class="flex justify-between items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3 ">
                 <div class="flex justify-center items-center icon_title__container">
@@ -66,7 +64,6 @@
             </div>
         </div>
 
-        {{-- stats--}}
         <div class="custom_box stats-container">
             <div class="flex items
             -center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3">
@@ -74,7 +71,6 @@
                 <h2 class="h4 mb-0">Stats</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-4">
-{{--                <div class="row g-3 g-xl-4">--}}
                     <div class="">
                         <div class="h-full bg-neutral-200 rounded-xl text-center p-4">
                             <h2 class="h6 pb-2 mb-1">Opbrengsten huizen</h2>
@@ -93,7 +89,6 @@
                             <div class="h2 text-primary mb-2">€ -----</div>
                         </div>
                     </div>
-{{--                </div>--}}
             </div>
         </div>
 
@@ -108,8 +103,6 @@
                 <a class=" custom__btn ms-auto" href="{{ route('clients.properties', $client->id) }}">View all</a>
             </div>
 
-
-            {{-- Properties --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach($client->properties as $property)
 
@@ -125,14 +118,10 @@
                         </div>
                     </a>
                 @endforeach
-
-
                 <div class="col">
                     <div class="flex custom_property_card h-full align-center py-5 px-3 sm:px-4 ">
                         <a class="stretched-link flex align-center fw-semibold text-decoration-none m-auto"
-                           {{--                           href="{{ route('properties.create', ['clientId' => [$property->id ]) }}" data-bs-toggle="modal">--}}
                            href="{{ route('properties.create', ['clientId' => $client->id]) }}" data-bs-toggle="modal">
-                            {{--                            {{ route('properties.create', [$property->id ]) }}--}}
                             <i class="bi bi-plus fs-xl me-2"></i>
                             Add new address
                         </a>

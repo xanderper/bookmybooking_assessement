@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="container custom_container client_container">
-
-{{--        <h1 class="h2 mb-4">Single room</h1>--}}
-
         <div class="custom_box card-client-details">
 
             <div class="flex justify-between items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3 ">

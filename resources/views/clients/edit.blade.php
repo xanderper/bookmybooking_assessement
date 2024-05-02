@@ -1,31 +1,3 @@
-{{--
-@extends('layouts.layouts')
-
-@section('content')
-    <div class="container">
-        <h1>Edit Client</h1>
-        <form method="POST" action="{{ route('clients.update', $client->id) }}">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $client->name }}">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $client->email }}">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="text" class="form-control" id="phone" name="phone" value="{{ $client->phone }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    </div>
-@endsection
---}}
-
-
 @extends('layouts.layouts')
 
 @section('content')

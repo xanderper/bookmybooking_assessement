@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="container custom_container client_container">
-
-                <h1 class="h2 mb-4">Single property</h1>
-
         <div class="custom_box card-client-details">
             <div class="flex justify-between items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3 ">
                 <div class="flex justify-center items-center icon_title__container">
@@ -69,7 +66,6 @@
                 <h2 class="h4 mb-0">Stats</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-4">
-                {{--                <div class="row g-3 g-xl-4">--}}
                 <div class="">
                     <div class="h-full bg-neutral-200 rounded-xl text-center p-4">
                         <h2 class="h6 pb-2 mb-1">Opbrengsten van huis</h2>
@@ -88,7 +84,6 @@
                         <div class="h2 text-primary mb-2">€ -----</div>
                     </div>
                 </div>
-                {{--                </div>--}}
             </div>
         </div>
 
@@ -105,29 +100,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach($property->rooms as $room)
                     <a href="{{ route('rooms.show', $room->id) }}">
-                        {{--                    <a href="{{ $room->id }}">--}}
                         <div class="col">
                             <div class="custom_property_card h-full p-3 sm:p-4">
                                 <div class="flex align-center pb-2 mb-1">
                                     <h3 class="h6 text-nowrap text-truncate mb-0">{{ $room->name }}</h3>
-{{--                                    <div class="d-flex ms-auto">--}}
-{{--                                        <button class="nav-link fs-xl fw-normal py-1 pe-0 ps-1 ms-2" type="button"--}}
-{{--                                                data-bs-toggle="tooltip" aria-label="Edit"--}}
-{{--                                                data-bs-original-title="Edit">--}}
-{{--                                            <i class="bi bi-pencil"></i>--}}
-{{--                                        </button>--}}
-{{--                                        <button class="nav-link text-danger fs-xl fw-normal py-1 pe-0 ps-1 ms-2"--}}
-{{--                                                type="button" data-bs-toggle="tooltip" aria-label="Trash"--}}
-{{--                                                data-bs-original-title="Delete">--}}
-{{--                                            <i class="bi bi-trash"></i>--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
                     </a>
                 @endforeach
-
                 <div class="col">
                     <div class="flex custom_property_card h-full align-center py-5 px-3 sm:px-4 ">
                         <a class="stretched-link flex align-center fw-semibold text-decoration-none m-auto"

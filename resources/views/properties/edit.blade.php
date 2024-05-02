@@ -1,35 +1,3 @@
-{{--
-@extends('layouts.layouts')
-
-@section('content')
-    <div class="container">
-        <h1>Edit Property</h1>
-        <form method="POST" action="{{ route('properties.update', $property->id) }}">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="street">Street:</label>
-                <input type="text" class="form-control" id="street" name="street" value="{{ $property->street }}">
-            </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" value="{{ $property->city }}">
-            </div>
-            <div class="form-group">
-                <label for="postcode">Postcode:</label>
-                <input type="text" class="form-control" id="postcode" name="postcode" value="{{ $property->postcode }}">
-            </div>
-            <div class="form-group">
-                <label for="country">Country:</label>
-                <input type="text" class="form-control" id="country" name="country" value="{{ $property->country }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    </div>
-@endsection
---}}
-
-
 @extends('layouts.layouts')
 
 @section('content')
@@ -40,7 +8,6 @@
             <form method="POST" action="{{ route('properties.update', $property->id) }}">
                 @csrf
                 @method('PUT')
-
                 <div class="mb-6">
                     <label for="street" class="block text-gray-700 font-bold mb-2">Street:</label>
                     <input type="text" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street" name="street" value="{{ $property->street }}">

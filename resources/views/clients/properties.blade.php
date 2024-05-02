@@ -14,11 +14,9 @@
 
             {{-- Properties --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-{{--                @foreach($client->properties as $property)--}}
                     @foreach($properties as $property)
 
                     <a href="{{ route('properties.show', $property->id) }}">
-{{--                    <a href="{{ $property->id }}">--}}
                         <div class="col">
                             <div class="custom_property_card h-full p-3 sm:p-4">
                                 <div class="flex align-center pb-2 mb-1">
@@ -36,8 +34,7 @@
                                     </div>
                                 </div>
                                 <p class="mb-0">{{ $property->street }}, {{ $property->postcode  }},<br>{{ $property->country }}, {{ $property->city  }},</p>
-                                {{--                            <p class="mb-0">314 Robinson Lane,<br>Wilmington, DE 19805,</p>--}}
-                            </div>
+                             </div>
                         </div>
                     </a>
                 @endforeach
