@@ -20,6 +20,10 @@ body {
   font-size: calc(1.275rem + 0.3vw);
   font-weight: 600;
 }
+.custom_container .h6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
 .custom_container .custom_box {
   padding: 35px;
   border-radius: 45px;
@@ -45,12 +49,28 @@ body {
 .custom_container .custom_box .custom__btn:hover {
   background-color: rgba(18, 21, 25, 0.08);
 }
-
-.custom__secondary {
+.custom_container .custom_box .custom__delete {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+.custom_container .custom_box .custom__delete:hover {
+  background-color: #ff7875;
+}
+.custom_container .custom_box .custom__secondary {
   color: #858c97;
 }
-
-.custom_property_card {
+.custom_container .custom_box .custom_property_card {
   border: 1px solid black;
   border-radius: 15px;
 }

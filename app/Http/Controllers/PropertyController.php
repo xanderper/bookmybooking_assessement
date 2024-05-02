@@ -62,6 +62,7 @@ class PropertyController extends Controller
 
 
 
+
     // add a method to get all the rooms of a property
     public function rooms($propertyId)
     {
@@ -72,27 +73,30 @@ class PropertyController extends Controller
 
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Property $property)
     {
-        //
+        return view('properties.edit', compact('property'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Property $property)
     {
-        //
+        $validatedData = $request->validate([
+            'street' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'postcode' => 'required|string|max:20',
+            'country' => 'required|string|max:255',
+        ]);
+
+        $property->update($validatedData);
+
+        return redirect()->route('properties.show', $property->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+
+        return redirect()->route('properties.index');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Property;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -22,29 +23,28 @@ class RoomController extends Controller
     public function create($propertyId)
     {
         // Return the view with the form for creating a new room
-        return view('rooms.create', ['propertyId' => $propertyId]);
+        return view('rooms.create', compact('propertyId'));
     }
 
     /**
      * Store a newly created room in storage.
      */
-    public function store(Request $request, $propertyId)
+    public function store(Request $request)
     {
         // Validate the request data
         $validatedData = $request->validate([
+            'property_id' => 'required|integer',
             'name' => 'required|string',
             'area' => 'required|numeric',
             'price' => 'required|numeric',
             // Add more validation rules as needed
         ]);
 
-        // Create the room associated with the given property
-        $room = new Room($validatedData);
-        $room->property_id = $propertyId;
-        $room->save();
+
+        $room = Room::create($validatedData);
 
         // Redirect the user to the property's rooms page
-        return redirect()->route('properties.rooms', $propertyId);
+        return redirect()->route('rooms.show', $room->id);
     }
 
     /**
@@ -52,34 +52,37 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-
          $room = Room::findOrFail($id);
          return view('rooms.show', compact('room'));
 
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+
+    public function edit(Room $room)
     {
-        //
+        return view('rooms.edit', compact('room'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Room $room)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'area' => 'required|numeric',
+            'price' => 'required|numeric',
+        ]);
+
+        $room->update($validatedData);
+
+        return redirect()->route('rooms.show', $room->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Room $room)
     {
-        //
+        $room->delete();
+
+        return redirect()->route('properties.rooms', $room->property_id); // Redirect to the property's rooms page or any other appropriate page
     }
+
 }

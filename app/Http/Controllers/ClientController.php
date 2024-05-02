@@ -29,11 +29,27 @@ class ClientController extends Controller
     }
 
 
+//    public function show(string $id)
+//    {
+//        $client = Client::findOrFail($id);
+//        return view('clients.show', compact('client'));
+//    }
+
+
     public function show(string $id)
     {
+
         $client = Client::findOrFail($id);
-        return view('clients.single', compact('client'));
+
+        // Calculate total revenue
+        $totalRevenue = Room::sum('price');
+
+        return view('clients.show', compact('client', 'totalRevenue'));
     }
+
+
+
+
 
     public function create()
     {
@@ -58,24 +74,65 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('clients.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients,email,' . $id,
+            'phone' => 'required|string|max:20',
+        ]);
+
+        $client->update($validatedData);
+
+        return redirect()->route('clients.show', $id)->with('success', 'Client updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
     }
+
+
+
+
+//    /**
+//     * Show the form for editing the specified resource.
+//     */
+//    public function edit(string $id)
+//    {
+//        //
+//    }
+//
+//    /**
+//     * Update the specified resource in storage.
+//     */
+//    public function update(Request $request, string $id)
+//    {
+//        //
+//    }
+//
+//    /**
+//     * Remove the specified resource from storage.
+//     */
+//    public function destroy(string $id)
+//    {
+//        //
+//    }
 }

@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $fillable = ['name', 'area', 'price'];
+    protected $fillable = [
+        'property_id', // If you have a foreign key column
+        'name',
+        'area',
+        'price'
+    ];
 
 
     public function property()

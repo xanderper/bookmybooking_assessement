@@ -21,3 +21,23 @@ Route::post('/properties/create', [PropertyController::class, 'store'])->name('p
 Route::get('/properties/{propertyId}', [PropertyController::class, 'show'])->name('properties.show');                 // show a single property
 Route::get('/properties/{propertyId}/rooms', [PropertyController::class, 'rooms'])->name('properties.rooms');         // show all the rooms of a property
 Route::get('/room/{roomid}', [RoomController::class, 'show'])->name('rooms.show');                                    // show a single room
+
+
+
+Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit'); // Show the form for editing a client
+Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update'); // Update the specified client
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy'); // Delete the specified client
+
+
+Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit'); // Show the form for editing a property
+Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update'); // Update the specified property
+Route::delete('/properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy'); // Delete the specified property
+
+
+Route::get('/rooms/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit'); // Show the form for editing a room
+Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update'); // Update the specified room
+Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy'); // Delete the specified room
+
+
+Route::get('/rooms/create/{propertyId}', [RoomController::class, 'create'])->name('rooms.create'); // Show the form for creating a new room
+Route::post('/rooms/create', [RoomController::class, 'store'])->name('rooms.store'); // Store a newly created room
