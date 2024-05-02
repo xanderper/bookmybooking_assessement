@@ -6,13 +6,24 @@
         <h1 class="h2 mb-4">Overview</h1>
 
         <div class="custom_box card-client-details">
-            <div class="flex items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3 ">
-                <i class="fa-regular fa-user text-primary lead pe-1 me-2 "></i>
-                <h2 class="h4 mb-0">Basic info</h2>
-                <a href="{{ route('clients.edit', $client->id) }}" class="ml-auto custom__btn">
-                    <i class="bi bi-pencil mr-2"></i>
-                    Edit info
-                </a>
+            <div class="flex justify-between items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3 ">
+                <div class="flex justify-center items-center icon_title__container">
+                    <i class="fa-regular fa-user text-primary lead pe-1 me-2 flex justify-center items-center "></i>
+                    <h2 class="h4 mb-0">Basic info</h2>
+                </div>
+
+                <div class="flex gap-2 btn__container">
+                    <a href="http://localhost:8000/clients/2/edit" class="flex justify-center items-center ml-auto custom__btn">
+                        <i class="bi bi-trash mr-2 flex justify-center items-center"></i>
+                        Delete
+                    </a>
+
+                    <a href="{{ route('clients.edit', $client->id) }}" class="ml-auto custom__btn">
+                        <i class="bi bi-pencil mr-2"></i>
+                        Edit info
+                    </a>
+                </div>
+
 
             </div>
             <div class="sm:flex items-center">

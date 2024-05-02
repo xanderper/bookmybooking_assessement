@@ -6,6 +6,10 @@
             <div class="flex items-center sm:mt-n1 pb-4 mb-0 lg:mb-1 xl:mb-3">
                 <i class="fa-solid fa-location-dot pe-1 me-2"></i>
                 <h2 class="h4 mb-0">Property overview</h2>
+                <a href="{{ route('clients.edit', $client->id) }}" class="ml-auto custom__btn">
+                    <i class="bi bi-pencil mr-2"></i>
+                    Edit info
+                </a>
             </div>
 
             {{-- Properties --}}
